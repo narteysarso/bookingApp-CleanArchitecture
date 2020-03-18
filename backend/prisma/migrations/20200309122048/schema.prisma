@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgres"
+  url = "***"
+}
+
+generator client { 
+  provider = "prisma-client-js"
+}
+
+model App {
+  id String @id @default(cuid())
+  name String?
+  token String?
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  deletedAt DateTime? 
+  users User[]
+  rooms Room[]
+  amenities Amenity[]
+  packages Package[]
+  books Book[]
+}
+
+// model Role {
+//   id String @id @default(cuid())
+//   name String
+//   description String?
+//   users User[]
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @default(now())
+//   deletedAt DateTime?
+// }
+
+model User {
+  id String @id @default(cuid())
+  name String 
+  email String @unique
+  password String 
+  app App 
+  role Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  deletedAt DateTime? 
+  books Book[]
+  rooms Room[]
+}
+
+model Amenity {
+  id String @id @default(cuid())
+  name String 
+  description String?
+  app App
+  author User
+  rooms Room[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  deletedAt DateTime? 
+}
+
+model Room {
+  id String @id @default(cuid())
+  name String 
+  description String?
+  location String?
+  amenities Amenity[]
+  isBooked Boolean @default(false)
+  app App
+  author User
+  price Float
+  books Book[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  deletedAt DateTime? 
+}
+
+model Package {
+  id String @id @default(cuid())
+  name String
+  description String?
+  image_url String
+  price Float
+  books Book[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  deletedAt DateTime? 
+  author User
+}
+model Book {
+  id String @id @default(cuid())
+  clientName String
+  clientEmail String?
+  clientPhone String
+  room Room
+  arrivalTime DateTime
+  depatureTime DateTime
+  app App
+  author User
+  cost Float
+  isApproved Boolean @default(false)
+  packages Package[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  deletedAt DateTime? 
+}
+
+enum Role {
+  ADMIN
+  OTHER
+}

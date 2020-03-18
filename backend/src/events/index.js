@@ -1,0 +1,23 @@
+module.exports = {
+    ...require("./amenity/create-amenity"),
+    ...require("./amenity/delete-amenity"),
+    ...require("./amenity/update-amenity"),
+    ...require("./app/create-app"),
+    ...require("./app/delete-app"),
+    ...require("./app/update-app"),
+    ...require("./book/create-book"),
+    ...require("./book/delete-book"),
+    ...require("./book/update-book"),
+    ...require("./package/create-package"),
+    ...require("./package/delete-package"),
+    ...require("./package/update-package"),
+    ...require("./room/create-room"),
+    ...require("./room/delete-room"),
+    ...require("./room/update-room"),
+    ...require("./user/create-user"),
+    ...require("./user/delete-user"),
+    ...require("./user/update-user")
+    // ...require("./"),
+    // ...require("./"),
+    // ...require("./"),
+}
