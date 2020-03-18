@@ -1,16 +1,8 @@
 version: "3"
 
 services: 
-    # postgres_db:
-    #     image: postgres
-    #     environment: 
-    #         POSTGRES_PASSWORD: 123456
-    #         POSTGRES_USER: admin
-    #         POSTGRES_DB: booking
         
     backend:
-        # links: 
-        #     - postgres_db
         build: 
             dockerfile: Dockerfile
             context: ./backend
@@ -23,14 +15,4 @@ services:
             - ./backend/prisma:/app/prisma
             - ./backend/src:/app/src
             - ./backend/__test__/faker:/app/__test__/faker
-
-    # prisma-studio:
-    #     links: 
-    #         - postgres_db
-    #     build: ./backend/prisma
-    #     depends_on: 
-    #         - postgres_db
-    #         - backend
-    #     ports: 
-    #         - 5555:5555
     
